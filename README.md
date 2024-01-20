@@ -52,7 +52,7 @@ Hay que almacenar el listado de favoritos en el localStorage. De esta forma, al 
 de favoritos se debe mostrarse.
 
 
-#### Entrega
+### Entrega
 
 El límite de entrega es el lunes 22 de enero a las 14
 
