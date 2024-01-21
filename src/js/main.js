@@ -7,7 +7,6 @@ const listResult= document.querySelector('.js-container');
 const listFavorites= document.querySelector('.js-container-fav');
 
 
-
 let titlesList = [];
 let initialUrl='https://api.jikan.moe/v4/anime?q='
 let url = initialUrl + 'naruto';
@@ -50,15 +49,16 @@ const renderTitles = (titlesList) => {
         imgElement.src = title.images.jpg.image_url;
         } else {
         imgElement.src = 'https://via.placeholder.com/210x295/ffffff/666666/?text=TV';
-    }
+        }
 
         titleElement.textContent = title.title;   
 
         titleContainer.appendChild(imgElement);
         titleContainer.appendChild(titleElement);
 
-        listResult.appendChild(titleContainer);
-    });
+        listResult.appendChild(titleContainer); 
+                 
+        });
     listenerTitles();
 };
 
@@ -66,11 +66,11 @@ function handleAddFavorite(event) {
     const clickedTitleId = parseInt(event.currentTarget.id);
     const foundTitle = titlesList.find(title => title.mal_id === parseInt(clickedTitleId));
     const indexTitleFav=favoritesTitles.findIndex((title) => title.mal_id === clickedTitleId);
-     if (indexTitleFav === -1){
-        favoritesTitles.push(foundTitle); 
-      
-    }
+    if (indexTitleFav === -1){
+        favoritesTitles.push(foundTitle);
+        }
     renderFavorites(favoritesTitles);
+    localStorage.setItem("localFav",JSON.stringify(favoritesTitles));
 }
 
 function listenerTitles(){
@@ -98,10 +98,20 @@ function renderFavorites(favoritesTitles) {
 
         favoriteContainer.classList.add('js-favorite-selected');
         favoriteContainer.id = `${favorite.mal_id}`;
+        titleElement.textContent = favorite.title;
 
         favoriteContainer.appendChild(imgElement);
         favoriteContainer.appendChild(titleElement);
 
-        listFavorites.appendChild(favoriteContainer);
+        listFavorites.appendChild(favoriteContainer); 
     });
 }
+
+function getDataLocalStorage(){
+    const dataLocalFav =JSON.parse(localStorage.getItem('localFav'));
+    if (dataLocalFav!==null){
+    favoritesTitles = dataLocalFav;
+    renderFavorites(favoritesTitles);  
+    }
+}
+getDataLocalStorage();
