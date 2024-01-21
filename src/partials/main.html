@@ -1,25 +1,21 @@
 <main class="page__main">
   <form class="form">
-    <input class="input js-seacher" type="text" placeholder="Titulo de la Serie" value= ""/>
+    <input class="input js-seacher" type="text" placeholder="Titulo de la Serie" value= "" required/>
     <button class="button js-button-search">Buscar</button>
-    <button class="reset js-button-reset">Reset</button>
+    <button class="button js-button-reset">Reset</button>
   </form>
-  <section class="js-container">
-  <div>
-    <h2>Resultados</h2>
-  </div>
-  <div>
+  <section class="section js-container">
+    <h2 class="result">Resultados</h2>
+    <div class="js-container-selected">
     <div></div>
     <h3></h3>
   </div>
 </section>
-<section>
-  <div>
-    <h2>Series Favoritas</h2>
-  </div>
-  <div>
-    <ul class="js-img-favorites"></ul>
-    <h4></h4>
+<section class="section-fav js-container-fav">
+    <h2 class="favotites">Series Favoritas</h2>
+    <div class="js-container-selected-fav">
+    <div></div>
+    <h3></h3>
   </div>
 </section>
 </main>
