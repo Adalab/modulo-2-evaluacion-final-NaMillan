@@ -42,8 +42,16 @@ const renderTitles = (titlesList) => {
         const imgElement = document.createElement('img');
         const titleElement = document.createElement('h3');
         
-        titleContainer.classList.add('js-title-selected');
+        titleContainer.classList.add('js-title-selected', 'result-row');
         titleContainer.id = `${title.mal_id}`;
+
+       
+        const isFavorite = favoritesTitles.some(favorite => favorite.mal_id === title.mal_id);
+        console.log (isFavorite);
+        if (isFavorite) {
+        titleContainer.classList.add('js-favorite-title');
+        }
+        imgElement.classList.add('js-title-image');
 
         if (title.images.jpg.image_url !== '') {
         imgElement.src = title.images.jpg.image_url;
