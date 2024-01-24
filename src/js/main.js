@@ -5,7 +5,7 @@ const btnSearch = document.querySelector('.js-button-search');
 const btnReset = document.querySelector('.js-button-reset');
 const listResult= document.querySelector('.js-container');
 const listFavorites= document.querySelector('.js-container-fav');
-
+const btnCantidad = document.querySelector('.js-button-cantidad');
 
 let titlesList = [];
 let initialUrl='https://api.jikan.moe/v4/anime?q='
@@ -22,6 +22,16 @@ function getDataApi (){
     });
 }
 //getDataApi();
+
+const handleCantidad =(event) => {
+    event.preventDefault();
+const cantidadFavoritos = favoritesTitles.length;
+console.log("La cantidad de elementos es:"+cantidadFavoritos); 
+}
+
+
+btnCantidad.addEventListener('click', handleCantidad);
+
 
 const handleInput = (event) => {
     event.preventDefault();
@@ -41,6 +51,7 @@ const renderTitles = (titlesList) => {
         const titleContainer = document.createElement('div');
         const imgElement = document.createElement('img');
         const titleElement = document.createElement('h3');
+        const scoreElement=document.createElement('p');
         
         titleContainer.classList.add('js-title-selected', 'result-row');
         titleContainer.id = `${title.mal_id}`;
@@ -59,10 +70,13 @@ const renderTitles = (titlesList) => {
         imgElement.src = 'https://via.placeholder.com/210x295/ffffff/666666/?text=TV';
         }
 
-        titleElement.textContent = title.title;   
+        titleElement.textContent = title.title;
+        scoreElement.textContent =title.score;
+         
 
         titleContainer.appendChild(imgElement);
         titleContainer.appendChild(titleElement);
+        titleContainer.appendChild(scoreElement);
 
         listResult.appendChild(titleContainer); 
                  
